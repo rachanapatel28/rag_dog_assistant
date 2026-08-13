@@ -1,4 +1,5 @@
 .env
 venv/
---pycache__/
+__pycache__/
 .DS_Store
+chunk_embeddings.json
