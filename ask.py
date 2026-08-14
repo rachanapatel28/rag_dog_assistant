@@ -2,13 +2,12 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
-from search import load_index, search
+from search import search
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 CHAT_MODEL = "gpt-5-mini"
-INDEX_FILE = "chunk_embeddings.json"
 
 SYSTEM_PROMPT = (
     "You are a helpful assistant that answers questions about dogs. "
@@ -20,14 +19,14 @@ SYSTEM_PROMPT = (
 
 def build_context(results):
     context = ""
-    for score, chunk in results:
+    for distance, chunk in results:
         context += f"[Source: {chunk['source']}]\n{chunk['text']}\n\n"
     return context
 
 
-def answer_question(query, chunks):
+def answer_question(query):
     # 1. Retrieve the most relevant chunks (your search.py)
-    results = search(query, chunks)
+    results = search(query)
 
     # 2. Assemble them into a context block
     context = build_context(results)
@@ -42,15 +41,14 @@ def answer_question(query, chunks):
     )
     answer = response.choices[0].message.content
 
-    sources = [chunk["source"] for score, chunk in results]
+    sources = [chunk["source"] for distance, chunk in results]
     return answer, sources
 
 
 if __name__ == "__main__":
-    chunks = load_index(INDEX_FILE)
 
-    query = "what is the capital of France?"
-    answer, sources = answer_question(query, chunks)
+    query = "How do I stop my puppy from nipping?"
+    answer, sources = answer_question(query)
 
     print(f"Question: {query}\n")
     print(f"Answer:\n{answer}\n")

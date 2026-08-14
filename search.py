@@ -1,55 +1,50 @@
 import os
-import json
-import math
 from dotenv import load_dotenv
 from openai import OpenAI
+import chromadb
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-INDEX_FILE = "chunk_embeddings.json"
+CHROMA_PATH = "./chroma_db"
+COLLECTION_NAME = "dog_wiki"
 EMBED_MODEL = "text-embedding-3-small"
 TOP_K = 3
 
+# Open the Chroma collection once, when the module is imported
+chroma_client = chromadb.PersistentClient(path=CHROMA_PATH)
+collection = chroma_client.get_or_create_collection(name=COLLECTION_NAME)
 
-def cosine_similarity(a, b):
-    dot = sum(x * y for x, y in zip(a, b))
-    norm_a = math.sqrt(sum(x * x for x in a))
-    norm_b = math.sqrt(sum(x * x for x in b))
-    return dot / (norm_a * norm_b)
-
-
-def load_index(path):
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def search(query, chunks, top_k=TOP_K):
+def search(query, top_k=TOP_K):
     # 1. Embed the query the same way we embedded the chunks
     response = client.embeddings.create(model=EMBED_MODEL, input=[query])
     query_vec = response.data[0].embedding
 
-    # 2. Score the query against every chunk
+    # 2. Let Chroma find the closest chunks (returned nearest-first)
+    results = collection.query(query_embeddings=[query_vec], n_results=top_k)
+
+    # 3. Reshape Chroma's response into (distance, chunk) pairs
     scored = []
-    for chunk in chunks:
-        score = cosine_similarity(query_vec, chunk["embedding"])
-        scored.append((score, chunk))
-
-    # 3. Sort by score, highest first, and keep the top few
-    scored.sort(key=lambda pair: pair[0], reverse=True)
-    return scored[:top_k]
-
+    for chunk_id, text, meta, distance in zip(
+        results["ids"][0],
+        results["documents"][0],
+        results["metadatas"][0],
+        results["distances"][0],
+    ):
+        chunk = {"source": meta["source"], "chunk_id": chunk_id, "text": text}
+        scored.append((distance, chunk))
+    
+    return scored
+    
 
 if __name__ == "__main__":
-    chunks = load_index(INDEX_FILE)
-    print(f"Loaded {len(chunks)} chunks from {INDEX_FILE}\n")
 
     query = "how do I stop my puppy from nipping?"
-    results = search(query, chunks)
+    results = search(query)
 
     print(f"Query: {query}\n")
-    print(f"Top {len(results)} most relevant chunks:\n")
-    for score, chunk in results:
-        print(f"[{score:.3f}] {chunk['source']}")
+    print(f"Top {len(results)} closest chunks (lower distance = closer):\n")
+    for distance, chunk in results:
+        print(f"[{distance:.3f}] {chunk['source']}")
         print(f"        {chunk['text'][:160]}...")
         print()

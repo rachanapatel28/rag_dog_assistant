@@ -3,3 +3,4 @@ venv/
 __pycache__/
 .DS_Store
 chunk_embeddings.json
+chroma_db/
