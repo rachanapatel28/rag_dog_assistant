@@ -46,7 +46,7 @@ containerized frontend/backend setup.
 ### Setup
 1. Clone the repository:
    ```
-   git clone https://github.com/YOUR-USERNAME/dog-rag-assistant.git
+   git clone https://github.com/rachanapatel28/rag_dog_assistant.git
    cd dog-rag-assistant
    ```
 2. Create a `.env` file in the project root with your API key:
