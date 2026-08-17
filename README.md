@@ -32,7 +32,7 @@ containerized frontend/backend setup.
 ## Screenshot
 
 **Answering from the knowledge base:**
-![Answering a dog question](docs/screenshot_1_.png)
+![Answering a dog question](docs/screenshot_1.png)
 
 **Declining an out-of-scope question:**
 ![Declining an unrelated question](docs/screenshot_2.png)
