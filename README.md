@@ -107,12 +107,6 @@ source document appears in the top-k retrieved chunks:
 python evaluate_retrieval.py
 ```
 
-## Possible next steps
-
-- Automated answer-quality evaluation (faithfulness / relevance)
-- Public deployment with rate limiting and a spending cap
-- A richer frontend
-
 ## Notes
 
 This is a personal learning project. The dog-care information in the knowledge
