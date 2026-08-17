@@ -9,6 +9,8 @@ Built from scratch as a learning project to understand the full RAG pipeline
 end to end: chunking, embeddings, vector search, grounded generation, and a
 containerized frontend/backend setup.
 
+📖 For the story of how and why I built this, see the [project write-up](docs/writeup.md).
+
 ## Features
 
 - **Grounded answers** — responses come only from the knowledge base; the
