@@ -1,0 +1,313 @@
+[
+  {
+    "id": 1,
+    "question": "How do I get my puppy to stop nipping at my hands?",
+    "type": "paraphrased",
+    "acceptable_sources": [
+      "training_puppy_biting_and_mouthing.txt",
+      "guide_puppy_raising_and_training.txt"
+    ],
+    "expected_answer_gist": "Puppy mouthing is normal; pause play when bitten, redirect to chew toys, ensure enough rest.",
+    "out_of_scope": false
+  },
+  {
+    "id": 2,
+    "question": "My dog is terrified of fireworks. What can I do to help him?",
+    "type": "paraphrased",
+    "acceptable_sources": [
+      "training_fear_and_noise_phobias.txt"
+    ],
+    "expected_answer_gist": "Provide a safe den, comfort is fine, mask noise; don't force exposure; vet can help in severe cases.",
+    "out_of_scope": false
+  },
+  {
+    "id": 3,
+    "question": "What breeds are a good fit for someone who has never had a dog?",
+    "type": "paraphrased",
+    "acceptable_sources": [
+      "care_choosing_the_right_breed.txt",
+      "guide_first_time_dog_owners_handbook.txt"
+    ],
+    "expected_answer_gist": "Adaptable, trainable, good-natured breeds; avoid high-energy working breeds for beginners.",
+    "out_of_scope": false
+  },
+  {
+    "id": 4,
+    "question": "Would a husky cope well in a hot country like Spain?",
+    "type": "reasoning",
+    "acceptable_sources": [
+      "breed_siberian_husky.txt"
+    ],
+    "expected_answer_gist": "Not ideal; thick double coat means poor heat tolerance.",
+    "out_of_scope": false
+  },
+  {
+    "id": 5,
+    "question": "My dog's belly is swollen and hard and he keeps retching without bringing anything up. Should I worry?",
+    "type": "reasoning",
+    "acceptable_sources": [
+      "health_bloat_gastric_torsion.txt",
+      "health_recognising_an_emergency.txt"
+    ],
+    "expected_answer_gist": "These are signs of bloat (GDV), a life-threatening emergency; seek a vet immediately.",
+    "out_of_scope": false
+  },
+  {
+    "id": 6,
+    "question": "Can I give my dog ibuprofen when he seems to be in pain?",
+    "type": "reasoning",
+    "acceptable_sources": [
+      "health_never_give_human_medications.txt",
+      "health_recognising_pain.txt"
+    ],
+    "expected_answer_gist": "No; human painkillers like ibuprofen are toxic to dogs. Contact a vet for safe pain relief.",
+    "out_of_scope": false
+  },
+  {
+    "id": 7,
+    "question": "Which human foods are toxic to dogs?",
+    "type": "direct",
+    "acceptable_sources": [
+      "health_toxic_foods.txt",
+      "guide_dog_nutrition_and_feeding.txt"
+    ],
+    "expected_answer_gist": "Chocolate, xylitol, grapes/raisins, onions, garlic, macadamia nuts, alcohol, caffeine.",
+    "out_of_scope": false
+  },
+  {
+    "id": 8,
+    "question": "How much exercise does a Border Collie need?",
+    "type": "direct",
+    "acceptable_sources": [
+      "breed_border_collie.txt"
+    ],
+    "expected_answer_gist": "A lot; intense daily physical and mental work; not suited to sedentary homes.",
+    "out_of_scope": false
+  },
+  {
+    "id": 9,
+    "question": "What health problems are Cavalier King Charles Spaniels prone to?",
+    "type": "direct",
+    "acceptable_sources": [
+      "breed_cavalier_king_charles_spaniel.txt"
+    ],
+    "expected_answer_gist": "Mitral valve disease (heart) and syringomyelia; buy from health-testing breeders.",
+    "out_of_scope": false
+  },
+  {
+    "id": 10,
+    "question": "How do I stop my dog pulling on the leash?",
+    "type": "direct",
+    "acceptable_sources": [
+      "training_loose_leash_walking.txt"
+    ],
+    "expected_answer_gist": "Pulling never gets the dog forward; stop/change direction, reward a loose leash; a harness helps.",
+    "out_of_scope": false
+  },
+  {
+    "id": 11,
+    "question": "Should I choose a puppy or an adult dog?",
+    "type": "direct",
+    "acceptable_sources": [
+      "care_puppy_vs_adult_dog.txt"
+    ],
+    "expected_answer_gist": "Puppies need huge time/training; adults are often house-trained with known temperament.",
+    "out_of_scope": false
+  },
+  {
+    "id": 12,
+    "question": "How do I safely introduce my new dog to my cat?",
+    "type": "direct",
+    "acceptable_sources": [
+      "care_introducing_to_family_and_other_pets.txt"
+    ],
+    "expected_answer_gist": "Slow, supervised introductions; let the cat retreat; separate at first; never force it.",
+    "out_of_scope": false
+  },
+  {
+    "id": 13,
+    "question": "Why does my dog growl and stiffen when I approach his food bowl?",
+    "type": "paraphrased",
+    "acceptable_sources": [
+      "training_resource_guarding.txt"
+    ],
+    "expected_answer_gist": "Resource guarding; don't punish the growl; teach that approach predicts good things; get help if severe.",
+    "out_of_scope": false
+  },
+  {
+    "id": 14,
+    "question": "What should I do to prepare my home before a new dog arrives?",
+    "type": "direct",
+    "acceptable_sources": [
+      "care_preparing_your_home.txt",
+      "guide_first_time_dog_owners_handbook.txt"
+    ],
+    "expected_answer_gist": "Remove hazards, set up a resting space, use baby gates, make garden escape-proof.",
+    "out_of_scope": false
+  },
+  {
+    "id": 15,
+    "question": "Do I need liability insurance for my dog in Germany?",
+    "type": "direct",
+    "acceptable_sources": [
+      "germany_registration_tax_and_insurance.txt",
+      "germany_dog_ownership_rules.txt"
+    ],
+    "expected_answer_gist": "Often required or strongly recommended; mandatory in some states; rules vary locally.",
+    "out_of_scope": false
+  },
+  {
+    "id": 16,
+    "question": "What paperwork do I need to travel with my dog to another EU country?",
+    "type": "direct",
+    "acceptable_sources": [
+      "germany_eu_pet_passport_and_travel.txt"
+    ],
+    "expected_answer_gist": "An EU Pet Passport from a vet, with microchip and valid rabies vaccination; check destination rules.",
+    "out_of_scope": false
+  },
+  {
+    "id": 17,
+    "question": "How often should I feed a puppy compared to an adult dog?",
+    "type": "within-guide",
+    "acceptable_sources": [
+      "guide_dog_nutrition_and_feeding.txt",
+      "care_nutrition_and_feeding.txt"
+    ],
+    "expected_answer_gist": "Puppies need more frequent meals (3-4/day when young); most adults do well on two measured meals.",
+    "out_of_scope": false
+  },
+  {
+    "id": 18,
+    "question": "What does the 'rule of three' mean when settling in a new dog?",
+    "type": "within-guide",
+    "acceptable_sources": [
+      "care_first_weeks_and_settling_in.txt",
+      "guide_first_time_dog_owners_handbook.txt"
+    ],
+    "expected_answer_gist": "Roughly 3 days to decompress, 3 weeks to learn the routine, 3 months to feel at home.",
+    "out_of_scope": false
+  },
+  {
+    "id": 19,
+    "question": "How can I tell if my dog is in pain?",
+    "type": "paraphrased",
+    "acceptable_sources": [
+      "health_recognising_pain.txt",
+      "guide_dog_health_and_preventive_care.txt"
+    ],
+    "expected_answer_gist": "Subtle signs: reluctance to move/jump, appetite/posture/temperament changes, licking one spot, panting.",
+    "out_of_scope": false
+  },
+  {
+    "id": 20,
+    "question": "Is it okay to comfort my dog when he's scared, or does that reinforce the fear?",
+    "type": "reasoning",
+    "acceptable_sources": [
+      "training_fear_and_noise_phobias.txt",
+      "guide_dog_behaviour_and_communication.txt"
+    ],
+    "expected_answer_gist": "Comforting does not reinforce fear; reassurance and a safe space are fine; don't force exposure.",
+    "out_of_scope": false
+  },
+  {
+    "id": 21,
+    "question": "What is the capital of France?",
+    "type": "out-of-scope",
+    "acceptable_sources": [],
+    "expected_answer_gist": "Should decline: not covered by the dog wiki.",
+    "out_of_scope": true
+  },
+  {
+    "id": 22,
+    "question": "Which specific dog food brand is the best one to buy?",
+    "type": "out-of-scope",
+    "acceptable_sources": [],
+    "expected_answer_gist": "Should decline to name brands; the wiki says price isn't a guide and to ask a vet.",
+    "out_of_scope": true
+  },
+  {
+    "id": 23,
+    "question": "How do I teach my dog to do a backflip?",
+    "type": "out-of-scope",
+    "acceptable_sources": [],
+    "expected_answer_gist": "Should say this isn't covered in the wiki rather than inventing a method.",
+    "out_of_scope": true
+  },
+  {
+    "id": 24,
+    "question": "my dog just ate a couple squares of chocolate should i be worried",
+    "type": "hard-natural",
+    "acceptable_sources": [
+      "health_toxic_foods.txt",
+      "guide_dog_nutrition_and_feeding.txt"
+    ],
+    "expected_answer_gist": "Chocolate is toxic to dogs; contact a vet/poison line with amount eaten, don't wait for symptoms.",
+    "out_of_scope": false
+  },
+  {
+    "id": 25,
+    "question": "how do i get my dog to actually come back to me when i call him at the park",
+    "type": "hard-natural",
+    "acceptable_sources": [
+      "training_teaching_reliable_recall.txt"
+    ],
+    "expected_answer_gist": "Make coming back rewarding, practise with a long line, never punish a slow return.",
+    "out_of_scope": false
+  },
+  {
+    "id": 26,
+    "question": "my dog chews up the sofa whenever i leave for work",
+    "type": "hard-ambiguous",
+    "acceptable_sources": [
+      "training_separation_anxiety.txt",
+      "training_stopping_destructive_chewing.txt"
+    ],
+    "expected_answer_gist": "Could be separation distress (destruction tied to departures) or boredom; address cause, add enrichment.",
+    "out_of_scope": false
+  },
+  {
+    "id": 27,
+    "question": "which is calmer to live with, a great dane or a saint bernard?",
+    "type": "hard-multi-entity",
+    "acceptable_sources": [
+      "breed_great_dane.txt",
+      "breed_saint_bernard.txt"
+    ],
+    "expected_answer_gist": "Both are gentle giants with calm temperaments; both need space and have short lifespans.",
+    "out_of_scope": false
+  },
+  {
+    "id": 28,
+    "question": "wat shots does my new puppy need",
+    "type": "hard-natural",
+    "acceptable_sources": [
+      "health_vaccinations_and_vet_visits.txt",
+      "guide_dog_health_and_preventive_care.txt"
+    ],
+    "expected_answer_gist": "Core vaccines (e.g. parvo, distemper, rabies) as a puppy series then boosters; follow your vet's schedule.",
+    "out_of_scope": false
+  },
+  {
+    "id": 29,
+    "question": "whats that dangerous stomach twisting thing that big deep chested dogs can get",
+    "type": "hard-natural",
+    "acceptable_sources": [
+      "health_bloat_gastric_torsion.txt"
+    ],
+    "expected_answer_gist": "Bloat / GDV — a life-threatening emergency in deep-chested breeds; needs immediate vet care.",
+    "out_of_scope": false
+  },
+  {
+    "id": 30,
+    "question": "we both work long hours and nobody is home during the day, is getting a dog a bad idea?",
+    "type": "hard-ambiguous",
+    "acceptable_sources": [
+      "care_is_a_dog_right_for_you.txt",
+      "care_leaving_your_dog_boarding_and_daycare.txt",
+      "training_separation_anxiety.txt"
+    ],
+    "expected_answer_gist": "Dogs need company; long daily absences are a real consideration; options like daycare/walkers/sitters help.",
+    "out_of_scope": false
+  }
+]
