@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dog Wiki Assistant</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 40px auto;
+           padding: 0 16px; color: #222; line-height: 1.5; }
+    h1 { font-size: 1.5rem; margin-bottom: 4px; }
+    .muted { color: #888; }
+    textarea { width: 100%; padding: 10px; font-size: 1rem; box-sizing: border-box;
+               border: 1px solid #ccc; border-radius: 6px; resize: vertical; margin-top: 12px; }
+    button { margin-top: 10px; padding: 10px 18px; font-size: 1rem; border: none;
+             border-radius: 6px; background: #2b6cb0; color: white; cursor: pointer; }
+    button:disabled { background: #9db8d2; cursor: default; }
+    .label { font-weight: 600; margin-top: 22px; }
+    #answer { margin-top: 6px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>🐕 Dog Wiki Assistant</h1>
+  <p class="muted">Ask about dog breeds, care, health, or training.</p>
+
+  <textarea id="question" rows="3"
+            placeholder="e.g. Is a husky a good dog for a hot climate?"></textarea>
+  <br>
+  <button id="askBtn" onclick="ask()">Ask</button>
+
+  <div id="output"></div>
+
+  <script>
+    const API_URL = "http://127.0.0.1:8000";
+    async function ask() {
+      const question = document.getElementById("question").value.trim();
+      const btn = document.getElementById("askBtn");
+      const output = document.getElementById("output");
+      if (!question) return;
+
+      btn.disabled = true;
+      output.innerHTML = '<p class="muted">Thinking…</p>';
+
+      try {
+        const response = await fetch(API_URL + "/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: question })
+        });
+        if (!response.ok) throw new Error("Server error " + response.status);
+
+        const data = await response.json();
+
+        let html = '<div class="label">Answer</div>';
+        html += '<div id="answer">' + escapeHtml(data.answer) + '</div>';
+        output.innerHTML = html;
+      } catch (err) {
+        output.innerHTML = '<p style="color:#c00">Something went wrong: '
+                           + escapeHtml(err.message) + '</p>';
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    document.getElementById("question").addEventListener("keydown", (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "Enter") ask();
+    });
+  </script>
+</body>
+</html>
