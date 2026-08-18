@@ -73,26 +73,22 @@ How the two services are packaged and how traffic reaches them.
 flowchart TB
     subgraph Host["Your machine (localhost)"]
         Browser["🌐 Browser"]
-        Env[".env<br/>OPENAI_API_KEY"]
-        Vol["backend/chroma_db/<br/>(mounted volume)"]
+        Env[".env file<br/>OPENAI_API_KEY"]
+        Vol["backend/chroma_db/<br/>mounted volume"]
     end
 
-    subgraph DC["Docker Compose"]
-        subgraph FEC["frontend container<br/>(built from frontend/Dockerfile,<br/>base image: nginx:alpine)"]
-            FEP["listens on :80"]
-        end
-        subgraph BEC["backend container<br/>(built from backend/Dockerfile,<br/>base image: python:3.12-slim)"]
-            BEP["uvicorn, listens on :8000"]
-        end
+    subgraph DC["Docker Compose network"]
+        FEC["frontend container<br/>nginx:alpine<br/>built from frontend/Dockerfile<br/>listens on port 80"]
+        BEC["backend container<br/>python:3.12-slim + FastAPI<br/>built from backend/Dockerfile<br/>listens on port 8000"]
     end
 
-    OpenAI[("api.openai.com<br/>(external, HTTPS)")]
+    OpenAI[("api.openai.com<br/>external, HTTPS")]
 
-    Browser -- "localhost:8080 → container :80" --> FEP
-    Browser -- "localhost:8000/ask → container :8000" --> BEP
-    Env -. "env_file (secret, not baked into image)" .-> BEC
-    Vol -. "volume mount (persists between runs)" .-> BEC
-    BEC -- "HTTPS, outbound only" --> OpenAI
+    Browser -->|"localhost:8080 → container :80"| FEC
+    Browser -->|"localhost:8000/ask → container :8000"| BEC
+    Env -.->|"env_file, not baked into image"| BEC
+    Vol -.->|"volume mount, persists between runs"| BEC
+    BEC -->|"HTTPS, outbound only"| OpenAI
 ```
 
 ### Port mapping
