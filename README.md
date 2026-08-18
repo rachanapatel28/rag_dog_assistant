@@ -19,7 +19,8 @@ For diagrams of how the pipeline and containers fit together, see the [architect
   not keywords, using OpenAI embeddings and a Chroma vector database.
 - **Separate frontend and backend** — a static frontend talks to a FastAPI
   backend over HTTP (with CORS), mirroring a real web architecture.
-- **Fully containerized** — the whole app runs with a single `docker compose up`.
+- **Fully containerized** — both frontend and backend have their own Dockerfile,
+  and the whole app runs with a single `docker compose up`.
 - **Measured retrieval quality** — a small evaluation suite reports retrieval
   hit-rate over a hand-built test set.
 
@@ -31,7 +32,7 @@ For diagrams of how the pipeline and containers fit together, see the [architect
 - **HTML / JavaScript** — lightweight frontend, served by **nginx**
 - **Docker + Docker Compose** — containerization
 
-## Screenshot
+## Screenshots
 
 **Answering from the knowledge base:**
 ![Answering a dog question](docs/assets/01_in_scope_question.png)
@@ -49,7 +50,7 @@ For diagrams of how the pipeline and containers fit together, see the [architect
 1. Clone the repository:
    ```
    git clone https://github.com/rachanapatel28/rag_dog_assistant.git
-   cd dog-rag-assistant
+   cd rag_dog_assistant
    ```
 2. Create a `.env` file in the project root with your API key:
    ```
@@ -57,8 +58,10 @@ For diagrams of how the pipeline and containers fit together, see the [architect
    ```
 3. Build the knowledge base (chunks + embeddings, then load into Chroma):
    ```
+   cd backend
    python build_index.py
    python load_to_chroma.py
+   cd ..
    ```
 4. Start the app:
    ```
@@ -70,8 +73,8 @@ For diagrams of how the pipeline and containers fit together, see the [architect
 
 The assistant follows the standard RAG pattern:
 
-1. **Chunking** — the source documents in `data/` are split into overlapping
-   text chunks (`chunk_docs.py`).
+1. **Chunking** — the source documents in `backend/data/` are split into
+   overlapping text chunks (`chunk_docs.py`).
 2. **Embedding** — each chunk is turned into a vector that captures its meaning
    (`build_index.py`), and the vectors are stored in Chroma (`load_to_chroma.py`).
 3. **Retrieval** — an incoming question is embedded the same way, and Chroma
@@ -111,6 +114,7 @@ messy, natural-phrasing and ambiguous queries) by checking whether an expected
 source document appears in the top-k retrieved chunks:
 
 ```
+cd backend
 python evaluate_retrieval.py
 ```
 
