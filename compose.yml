@@ -1,18 +1,16 @@
 services:
   backend:
-    build: .
+    build: ./backend
     ports:
       - "8000:8000"
     env_file:
       - .env
     volumes:
-      - ./chroma_db:/app/chroma_db
+      - ./backend/chroma_db:/app/chroma_db
 
   frontend:
-    image: nginx:alpine
+    build: ./frontend
     ports:
       - "8080:80"
-    volumes:
-      - ./frontend:/usr/share/nginx/html:ro
     depends_on:
       - backend

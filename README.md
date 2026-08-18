@@ -9,7 +9,7 @@ Built from scratch as a learning project to understand the full RAG pipeline
 end to end: chunking, embeddings, vector search, grounded generation, and a
 containerized frontend/backend setup.
 
-📖 For the story of how and why I built this, see the [project write-up](docs/writeup.md).
+For diagrams of how the pipeline and containers fit together, see the [architecture doc](docs/architecture.md).
 
 ## Features
 
@@ -34,10 +34,10 @@ containerized frontend/backend setup.
 ## Screenshot
 
 **Answering from the knowledge base:**
-![Answering a dog question](docs/screenshot_1.png)
+![Answering a dog question](docs/assets/01_in_scope_question.png)
 
 **Declining an out-of-scope question:**
-![Declining an unrelated question](docs/screenshot_2.png)
+![Declining an unrelated question](docs/assets/02_out_of_scope_question.png)
 
 ## Getting started
 
@@ -85,18 +85,23 @@ The assistant follows the standard RAG pattern:
 
 ```
 .
-├── data/                 # the knowledge base (text documents)
-├── frontend/             # static HTML/JS frontend
-├── eval/                 # evaluation test set
-├── chunk_docs.py         # split documents into chunks
-├── build_index.py        # create embeddings
-├── load_to_chroma.py     # load embeddings into Chroma
-├── search.py             # semantic retrieval
-├── ask.py                # retrieval + grounded answer generation
-├── main.py               # FastAPI backend
-├── evaluate_retrieval.py # retrieval evaluation
-├── Dockerfile
-└── docker-compose.yml
+├── backend/
+│   ├── data/                 # the knowledge base (text documents)
+│   ├── eval/                 # evaluation test set
+│   ├── chunk_docs.py         # split documents into chunks
+│   ├── build_index.py        # create embeddings
+│   ├── load_to_chroma.py     # load embeddings into Chroma
+│   ├── search.py             # semantic retrieval
+│   ├── ask.py                # retrieval + grounded answer generation
+│   ├── main.py                # FastAPI backend
+│   ├── evaluate_retrieval.py # retrieval evaluation
+│   ├── requirements.txt
+│   └── Dockerfile
+├── frontend/
+│   ├── index.html            # static HTML/JS frontend
+│   └── Dockerfile
+├── docs/                     # screenshots and documentation
+└── compose.yml               # runs backend + frontend together
 ```
 
 ## Evaluation
